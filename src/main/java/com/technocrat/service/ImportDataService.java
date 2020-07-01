@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ImportDataService {
     public List<String[]> readCSV (MultipartFile filename) throws IOException;
+
+    String saveImage(MultipartFile imageFile) throws Exception;
 }

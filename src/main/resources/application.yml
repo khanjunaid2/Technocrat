@@ -1,5 +1,5 @@
 server:
-  port: 9090
+  port: 2080
 
 spring:
   jpa:
@@ -14,7 +14,7 @@ spring:
     platform: postgres
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
-    password: root
+    password: abhijeet
     driverClassName: org.postgresql.Driver
 
   mvc:

@@ -65,6 +65,7 @@ public class AdminController {
         return result;
     }
 
+
     /**
      * This method is used to retrieve the attribute and its values for a particular product
      *
@@ -72,9 +73,32 @@ public class AdminController {
      * @return
      */
     @PostMapping("/getProductAttributes")
-    public List<ProductAttrValues> getProductAttributes(@RequestParam(name = "productId") String productId) {
-        System.out.println(productId);
-        return productService.getProductAttributes(productId);
+    public DataTable getProductAttributes(@RequestParam(name = "productId") String productId, HttpServletRequest request) {
+        int start = 0;
+        int end = 0;
+        int length = 0;
+        if (request.getParameter("start") != null && request.getParameter("start") != "") {
+            start = Integer.parseInt(request.getParameter("start"));
+        }
+        if (request.getParameter("length") != null && request.getParameter("length") != "") {
+            length = Integer.parseInt(request.getParameter("length"));
+            end = length;
+        }
+        List<ProductAttrValues> productAttributes = null;
+
+        if (productId.equalsIgnoreCase("all")) {
+            productAttributes = productService.getProductAttributes();
+        } else {
+            productAttributes = productService.getProductAttributes(productId);
+        }
+
+        DataTable result = new DataTable();
+        result.setRecordsTotal(productAttributes.size());
+        result.setRecordsFiltered(productAttributes.size());
+
+        result.setData((List<Object>) (List<?>) productAttributes);
+        result.setStart(start);
+        return result;
     }
 
 
@@ -140,5 +164,10 @@ public class AdminController {
             log.error("Unable to parse. Check file format or if it is empty or not.");
             throw new IOException("Unable to parse. Check file format or if it is empty or not.");
         }
+    }
+
+    @PostMapping("/uploadImage")
+    public String importImage(@RequestParam("imageFile") MultipartFile imageFile) throws Exception {
+        return importDataService.saveImage(imageFile);
     }
 }

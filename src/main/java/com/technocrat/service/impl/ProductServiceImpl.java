@@ -62,4 +62,9 @@ public class ProductServiceImpl implements ProductService {
             return "Fail";
         }
     }
+
+    @Override
+    public List<ProductAttrValues> getProductAttributes() {
+        return (List<ProductAttrValues>) productAttrValuesRepository.findAll();
+    }
 }

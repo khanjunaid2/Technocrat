@@ -1376,39 +1376,6 @@
                 <!-- end page title -->
 
                 <div class="row">
-
-                    <!-- SignIn modal content -->
-                    <div id="login-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <div class="text-center mt-2 mb-4">
-                                        <a href="index.html" class="text-success">
-                                            <span><img src="../assets/images/logo-dark.png" alt="" height="24"></span>
-                                        </a>
-                                    </div>
-
-                                    <form action="#" class="px-3">
-
-                                        <div class="form-group">
-                                            <label for="attributeGrp">Attribute Group</label>
-                                            <input class="form-control" type="text" id="attributeGrp" required=""
-                                                   placeholder="abcgroup">
-                                        </div>
-
-                                        <div class="form-group text-center">
-                                            <button class="btn btn-rounded btn-primary" onclick="addAttrGroup()">Add
-                                            </button>
-                                        </div>
-
-                                    </form>
-
-                                </div>
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
-                    </div><!-- /.modal -->
-
-                    //Product Modal
                     <div id="product-modal" class="modal fade" tabindex="-1" role="dialog"
                          aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                         <div class="modal-dialog">
@@ -1422,13 +1389,9 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="control-label">Select Product</label>
-                                                <select id="select-product">
-                                                    <option data-display="Select">Nothing</option>
-                                                    <option value="1">Some option</option>
-                                                    <option value="2">Another option</option>
-                                                    <option value="3" disabled>A disabled option</option>
-                                                    <option value="4">Potato</option>
+                                                <label class="control-label">Select Attribute Group</label>
+                                                <select id="select-product-category"
+                                                        onchange="onChangeAttGrp(this.value)">
                                                 </select>
                                             </div>
                                         </div>
@@ -1456,7 +1419,6 @@
                     </div><!-- /.modal -->
 
 
-                    //Product Attribute Modal
                     <div id="product-attribute-modal" class="modal fade" tabindex="-1" role="dialog"
                          aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                         <div class="modal-dialog">
@@ -1533,20 +1495,63 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <select id="select-product-list" onchange="onChangeProductName(this.value)">
-                                                <option data-display="Select">Nothing</option>
-                                                <option value="1">Some option</option>
-                                                <option value="2">Another option</option>
-                                                <option value="3" disabled>A disabled option</option>
-                                                <option value="4">Potato</option>
+                                                <option value="all">Some option</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- start page title -->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="page-title-box">
+                                            <div class="page-title-right">
+                                                <ol class="breadcrumb m-0">
+                                                    <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a>
+                                                    </li>
+                                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a>
+                                                    </li>
+                                                    <li class="breadcrumb-item active">File Uploads</li>
+                                                </ol>
+                                            </div>
+                                            <h4 class="page-title">File Uploads</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end page title -->
+                                <!-- Image Upload Code -->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h4 class="header-title">Image file upload</h4>
+                                                <p class="sub-header">
+                                                    Please upload your Image.
+                                                </p>
+                                                <form method="post" action="" enctype="multipart/form-data" id="myform">
+                                                    <div>
+                                                        <input type="file" id="file" name="file"/>
+                                                        <input type="button" class="button" value="Upload"
+                                                               id="image_upload">
+                                                    </div>
+                                                </form>
+                                                <div class="dz-message needsclick">
+                                                    <i class="h1 text-muted dripicons-cloud-upload"></i>
+                                                    <h3>Drop files here or click to upload......2.</h3>
+                                                </div>
+                                                </form>
+                                                <!-- Preview -->
+                                                <div class="dropzone-previews mt-3" id="file-previews"></div>
+                                            </div> <!-- end card-body-->
+                                        </div> <!-- end card-->
+                                    </div><!-- end col -->
+                                </div>
+
+
                                 <table id="Product-Data-Table" class="table dt-responsive nowrap w-100">
                                     <thead>
                                     <tr>
                                         <th>Attribute Name</th>
-                                        <th>git stat</th>
+                                        <th>Attribute Value</th>
                                     </tr>
                                     </thead>
                                     <tbody id="attr-tbl-body">
@@ -1583,6 +1588,7 @@
         <!-- end Footer -->
 
     </div>
+
 
     <!-- ============================================================== -->
     <!-- End Page content -->
@@ -2084,7 +2090,6 @@
                 }
             },
             "columns": [
-
                 {
                     "data": "name", "mRender": function (data, type, row) {
                         return row.name;
@@ -2136,8 +2141,7 @@
 
 
     function onChangeAttGrp(id) {
-        selectedGrpId = id;
-        refreshDataTable($('#select-attrGrp').val());
+        selectedProductGrpId = id;
     }
 
     function getAttGrp(id) {
@@ -2145,7 +2149,7 @@
             type: 'POST',  // http method
             data: {name: ""},  // data to submit
             success: function (data, status, xhr) {
-                populateAttrGrp(data, id);
+                populateProductAttrGrp(data, id);
             },
             error: function (jqXhr, textStatus, errorMessage) {
                 console.log(errorMessage);
@@ -2157,7 +2161,7 @@
         $.ajax('http://localhost:2080/PIM/api/v1/getProductList', {
             type: 'GET',  // http method
             success: function (data, status, xhr) {
-                populateProductist(data, id);
+                populateProductList(data, id);
             },
             error: function (jqXhr, textStatus, errorMessage) {
                 console.log(errorMessage);
@@ -2165,10 +2169,10 @@
         });
     }
 
-    function populateProductist(data, id) {
+    function populateProductList(data, id) {
         var idd = "#" + id;
         $(idd).empty()
-        $(idd).append(new Option("All", "0"));
+        $(idd).append(new Option("All", "all"));
         for (i = 0; i < data.length; i++) {
             $(idd).append(new Option(data[i]));
         }
@@ -2181,12 +2185,12 @@
     }
 
 
-    function populateAttrGrp(data, id) {
+    function populateProductAttrGrp(data, id) {
         var idd = "#" + id;
         $(idd).empty()
         $(idd).append(new Option("All", "0"));
         for (i = 0; i < data.length; i++) {
-            $(idd).append(new Option(data[i]));
+            $(idd).append(new Option(data[i].groupName));
         }
     }
 
@@ -2195,7 +2199,7 @@
         $.ajax('http://localhost:2080/PIM/api/v1/addProduct', {
             type: 'POST',  // http method
             data: {
-                catGroupId: $('#select-product').val(),
+                catGroupId: $('#select-product-category').val(),
                 name: $('#product-name').val()
             },  // data to submit
             success: function (data, status, xhr) {
@@ -2247,11 +2251,11 @@
     }
 
     function populateModal() {
-        getAttGrp('select-attrGr');
+        getAttGrp('select-product-category');
     }
 
 
-    getAttGrp('select-attrGrp');
+    getAttGrp('select-product-category');
 
     getproductList('select-product-list')
 
@@ -2261,7 +2265,43 @@
         refreshDataTable($('#select-product-list').val());
     }
 
+    $(document).ready(function () {
 
+        $("#image_upload").click(function () {
+
+            var fd = new FormData();
+            var files = $('#file')[0].files[0];
+            fd.append('imageFile', files);
+
+            $.ajax({
+                url: 'http://localhost:2080/PIM/api/v1/uploadImage',
+                type: 'post',
+                // data >> The data to send to the server when performing the Ajax request.
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    //convert response object to array
+                    if (response == "Success") {
+                        // var array = $.map(response, function (value, index) {
+                        //     return [value];
+                        // });
+                        // localStorage.setItem("test", JSON.stringify(array));
+                        Swal.fire({
+                            title: "Success",
+                            text: "Image Uploaded",
+                            type: "success",
+                            confirmButtonClass: "btn btn-confirm mt-2"
+                        });
+                        $('#login-modal').modal('toggle');
+                    }
+                },
+                error: function (errorMessage) {
+                    alert(errorMessage.responseJSON.message);
+                },
+            });
+        });
+    });
 </script>
 </body>
 </html>

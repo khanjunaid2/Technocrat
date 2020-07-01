@@ -13,4 +13,6 @@ public interface ProductService {
     List<ProductAttrValues> getProductAttributes(String productName);
 
     String addProductAttributes(String productId, String attName, String attValue);
+
+    List<ProductAttrValues> getProductAttributes();
 }
