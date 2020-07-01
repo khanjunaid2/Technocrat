@@ -1,0 +1,26 @@
+server:
+  port: 9090
+
+spring:
+  jpa:
+    properties:
+      hibernate:
+        database: POSTGRESQL
+        show_sql: true
+        ddl-auto: update
+        default_schema: public
+
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: root
+    driverClassName: org.postgresql.Driver
+
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  jackson:
+    parser:
+      ALLOW_NUMERIC_LEADING_ZEROS : true
