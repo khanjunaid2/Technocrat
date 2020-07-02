@@ -52,6 +52,19 @@
     <!-- Start Page Content here -->
     <!-- ============================================================== -->
 
+    <div class="modal fade" id="centermodal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myCenterModalLabel">Center modal</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div id="image-text" class="modal-body">
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
     <div class="content-page">
         <div class="content">
 
@@ -535,11 +548,35 @@
                 processData: false,
                 success: function (response) {
                     //convert response object to array
-                    if (response == "Success") {
+                    debugger;
+
+                    $.ajax('http://localhost:5000/query?imagePath='+response, {
+                        type: 'GET',  // http method
+                        data: {
+
+                        },  // data to submit
+                        headers: {
+                            'Access-Control-Allow-Origin': 'http://localhost:5000'
+                        },
+                        success: function (data, status, xhr) {
+                            debugger;
+                            console.log(data);
+                            $('#image-text').text(data);
+                            $('#centermodal').modal('toggle');
+                        },
+                        error: function (jqXhr, textStatus, errorMessage) {
+                            console.log(errorMessage);
+                        }
+                    });
+
+                    if (response != "") {
+
                         // var array = $.map(response, function (value, index) {
                         //     return [value];
                         // });
                         // localStorage.setItem("test", JSON.stringify(array));
+                        debugger;
+
                         Swal.fire({
                             title: "Success",
                             text: "Image Uploaded",

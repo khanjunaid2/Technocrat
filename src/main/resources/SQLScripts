@@ -1,0 +1,7 @@
+CREATE TABLE public.image_details
+(
+    image_id serial not null,
+    file_name character varying COLLATE pg_catalog."default",
+    file_path character varying COLLATE pg_catalog."default",
+    CONSTRAINT image_details_pkey PRIMARY KEY (image_id)
+)
