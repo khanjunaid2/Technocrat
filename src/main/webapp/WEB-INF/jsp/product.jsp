@@ -59,7 +59,8 @@
                     <h4 class="modal-title" id="myCenterModalLabel">Center modal</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
-                <div id="image-text" class="modal-body">
+                <div  class="modal-body">
+                    <pre id="image-text"></pre>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
