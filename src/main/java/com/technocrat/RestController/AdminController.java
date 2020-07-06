@@ -3,18 +3,23 @@ package com.technocrat.RestController;
 import com.technocrat.model.AttributeGroup;
 import com.technocrat.model.Attributes;
 import com.technocrat.model.DataTable;
+import com.technocrat.model.Item;
 import com.technocrat.model.ProductAttrValues;
 import com.technocrat.service.AttributeService;
 import com.technocrat.service.ImportDataService;
 import com.technocrat.service.ProductService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @Slf4j
@@ -169,5 +174,16 @@ public class AdminController {
     @PostMapping("/uploadImage")
     public String importImage(@RequestParam("imageFile") MultipartFile imageFile) throws Exception {
         return importDataService.saveImage(imageFile);
+    }
+
+    /**
+     * Supports Amazon for now.. rest can be added later!
+     * @param productName
+     * @return
+     * @throws IOException
+     */
+    @GetMapping("/productInfo")
+    public List<Item> getProductInformation(@RequestParam(name = "product") String productName) throws IOException {
+        return importDataService.importProductData(productName);
     }
 }
