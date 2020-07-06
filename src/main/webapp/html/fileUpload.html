@@ -1368,7 +1368,7 @@
                                     <h3>Drop files here or click to upload......2.</h3>
                                 </div>
 
-                            </form>
+                                </form>
 
                                 <!-- Preview -->
                                 <div class="dropzone-previews mt-3" id="file-previews"></div>
@@ -1862,7 +1862,7 @@
             fd.append('file',files);
 
             $.ajax({
-                url: 'http://localhost:9090/PIM/api/v1/importData',
+                url: 'http://localhost:2080/PIM/api/v1/importData',
                 type: 'post',
                 // data >> The data to send to the server when performing the Ajax request.
                 data: fd,
