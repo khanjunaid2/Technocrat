@@ -31,6 +31,8 @@ dependencies {
     implementation 'org.hibernate:hibernate-core'
     implementation 'org.hibernate:hibernate-entitymanager'
 
+    //web scrapping
+    compile 'org.jsoup:jsoup:1.13.1'
 //Core Tomcat implementation dependencies
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
     implementation 'javax.servlet:jstl'
