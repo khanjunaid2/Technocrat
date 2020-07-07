@@ -26,4 +26,8 @@ public class ViewController {
     public ModelAndView attribute() {
         return new ModelAndView("attribute");
     }
+    @RequestMapping("/dashboard")
+    public ModelAndView dashboard() {
+        return new ModelAndView("dashboard");
+    }
 }

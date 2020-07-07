@@ -4,4 +4,29 @@ CREATE TABLE public.image_details
     file_name character varying COLLATE pg_catalog."default",
     file_path character varying COLLATE pg_catalog."default",
     CONSTRAINT image_details_pkey PRIMARY KEY (image_id)
-)
+);
+
+CREATE TABLE sales_data(
+	product_id int ,
+	store_id int,
+	date date ,
+	total_sales int
+);
+
+CREATE TABLE stores(
+	id serial PRIMARY KEY,
+	store_name VARCHAR (50) UNIQUE NOT NULL
+);
+
+
+insert into public.stores (store_name ) values('Amazon');
+insert into public.stores (store_name ) values('Ebay');
+insert into public.stores (store_name ) values('Etsy');
+insert into public.stores (store_name ) values('Jet');
+insert into public.stores (store_name ) values('AliExpress');
+insert into public.stores (store_name ) values('Newegg');
+insert into public.stores (store_name ) values('Rakuten');
+insert into public.stores (store_name ) values('Flipkart');
+insert into public.stores (store_name ) values('eBid');
+insert into public.stores (store_name ) values('OnBuy');
+
