@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
@@ -33,6 +34,8 @@ public class AdminController {
     ProductService productService;
     @Autowired
     ImportDataService importDataService;
+    @Autowired
+    private ServletContext servletContext;
 
 
     @PostMapping("/addAttributeGroup")
@@ -169,5 +172,10 @@ public class AdminController {
     @PostMapping("/uploadImage")
     public String importImage(@RequestParam("imageFile") MultipartFile imageFile) throws Exception {
         return importDataService.saveImage(imageFile);
+    }
+
+    @GetMapping("/getContPath")
+    public String importImage() throws Exception {
+        return servletContext.getRealPath("/dashboard/");
     }
 }
