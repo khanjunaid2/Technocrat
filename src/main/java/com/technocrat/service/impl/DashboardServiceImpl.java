@@ -14,10 +14,7 @@ public class DashboardServiceImpl implements DashboardService {
         String res= contextPath;
         String uri = "http://127.0.0.1:5000/dashboardImages?path="+contextPath;
         RestTemplate restTemplate = new RestTemplate();
-        Object retn = restTemplate.getForObject(uri, Object.class);
-        ArrayList<String> result = new ArrayList<>();
-        result.add("Abhijeet");
-        result.add("dashboard/chelsea.jpg");
-        return retn;
+        Object result = restTemplate.getForObject(uri, Object.class);
+        return result;
     }
 }
