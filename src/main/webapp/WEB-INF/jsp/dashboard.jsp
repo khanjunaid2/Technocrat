@@ -67,7 +67,7 @@
                                     <li class="breadcrumb-item active">Dashboard 2</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Dashboard 2</h4>
+                            <h4 class="page-title">Dashboard</h4>
                         </div>
                     </div>
                 </div>
@@ -192,7 +192,7 @@
                                 </div>
                                 <h4 class="header-title mb-0">Lifetime Sales</h4>
                                 <div id="cardCollpase1" class="collapse pt-3 show">
-                                    <img src="\resources\Dashboard\ECDF.png">
+                                    <img src="dashboard/ECDF.png" id="image1">
                                 </div> <!-- collapsed end -->
                             </div> <!-- end card-body -->
                         </div> <!-- end card-->
@@ -209,23 +209,7 @@
                                 <h4 class="header-title mb-0">Income Amounts</h4>
 
                                 <div id="cardCollpase2" class="collapse pt-3 show">
-                                    <div class="text-center">
-                                        <div id="income-amounts" data-colors="#00acc1"></div>
-                                        <div class="row mt-3">
-                                            <div class="col-4">
-                                                <p class="text-muted font-15 mb-1 text-truncate">Target</p>
-                                                <h4><i class="fe-arrow-up text-success mr-1"></i>641</h4>
-                                            </div>
-                                            <div class="col-4">
-                                                <p class="text-muted font-15 mb-1 text-truncate">Last week</p>
-                                                <h4><i class="fe-arrow-down text-danger mr-1"></i>234</h4>
-                                            </div>
-                                            <div class="col-4">
-                                                <p class="text-muted font-15 mb-1 text-truncate">Last Month</p>
-                                                <h4><i class="fe-arrow-up text-success mr-1"></i>3201</h4>
-                                            </div>
-                                        </div> <!-- end row -->
-                                    </div>
+                                    <img src="" id="image2">
                                 </div> <!-- collapsed end -->
                             </div> <!-- end card-body -->
                         </div> <!-- end card-->
@@ -263,104 +247,6 @@
                             </div> <!-- end card-body -->
                         </div> <!-- end card-->
                     </div> <!-- end col-->
-                </div>
-                <!-- end row -->
-
-                <div class="row">
-                    <div class="col-xl-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-widgets">
-                                    <a href="javascript: void(0);" data-toggle="reload"><i class="mdi mdi-refresh"></i></a>
-                                    <a data-toggle="collapse" href="#cardCollpase4" role="button" aria-expanded="false" aria-controls="cardCollpase4"><i class="mdi mdi-minus"></i></a>
-                                    <a href="javascript: void(0);" data-toggle="remove"><i class="mdi mdi-close"></i></a>
-                                </div>
-                                <h4 class="header-title mb-0">Revenue By Location</h4>
-
-                                <div id="cardCollpase4" class="collapse pt-3 show">
-                                    <div id="world-map-markers" style="height: 433px"></div>
-                                </div> <!-- collapsed end -->
-                            </div> <!-- end card-body -->
-                        </div> <!-- end card-->
-                    </div> <!-- end col -->
-
-                    <div class="col-xl-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-widgets">
-                                    <a href="javascript: void(0);" data-toggle="reload"><i class="mdi mdi-refresh"></i></a>
-                                    <a data-toggle="collapse" href="#cardCollpase5" role="button" aria-expanded="false" aria-controls="cardCollpase5"><i class="mdi mdi-minus"></i></a>
-                                    <a href="javascript: void(0);" data-toggle="remove"><i class="mdi mdi-close"></i></a>
-                                </div>
-                                <h4 class="header-title mb-0">Top Selling Products</h4>
-
-                                <div id="cardCollpase5" class="collapse pt-3 show">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover table-centered mb-0">
-                                            <thead>
-                                            <tr>
-                                                <th>Product Name</th>
-                                                <th>Price</th>
-                                                <th>Quantity</th>
-                                                <th>Amount</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>ASOS Ridley High Waist</td>
-                                                <td>$79.49</td>
-                                                <td>82</td>
-                                                <td>$6,518.18</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Marco Lightweight Shirt</td>
-                                                <td>$128.50</td>
-                                                <td>37</td>
-                                                <td>$4,754.50</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Half Sleeve Shirt</td>
-                                                <td>$39.99</td>
-                                                <td>64</td>
-                                                <td>$2,559.36</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Lightweight Jacket</td>
-                                                <td>$20.00</td>
-                                                <td>184</td>
-                                                <td>$3,680.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Marco Shoes</td>
-                                                <td>$28.49</td>
-                                                <td>69</td>
-                                                <td>$1,965.81</td>
-                                            </tr>
-                                            <tr>
-                                                <td>ASOS Ridley High Waist</td>
-                                                <td>$79.49</td>
-                                                <td>82</td>
-                                                <td>$6,518.18</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Half Sleeve Shirt</td>
-                                                <td>$39.99</td>
-                                                <td>64</td>
-                                                <td>$2,559.36</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Lightweight Jacket</td>
-                                                <td>$20.00</td>
-                                                <td>184</td>
-                                                <td>$3,680.00</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div> <!-- end table responsive-->
-                                </div> <!-- collapsed end -->
-                            </div> <!-- end card-body -->
-                        </div> <!-- end card-->
-                    </div> <!-- end col -->
                 </div>
                 <!-- end row -->
 
@@ -405,7 +291,19 @@
 
 <script>
 
-
+    function sendContextPath(){
+        $.ajax('http://localhost:2080/PIM/api/v1/sendContextPath', {
+            type: 'GET',  // http method
+            success: function (data, status, xhr) {
+                debugger;
+                document.getElementById("image2").src=data[1];
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+                console.log(errorMessage);
+            }
+        });
+    }
+    sendContextPath();
 
 </script>
 

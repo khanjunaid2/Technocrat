@@ -5,6 +5,7 @@ import com.technocrat.model.Attributes;
 import com.technocrat.model.DataTable;
 import com.technocrat.model.ProductAttrValues;
 import com.technocrat.service.AttributeService;
+import com.technocrat.service.DashboardService;
 import com.technocrat.service.ImportDataService;
 import com.technocrat.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -34,6 +36,10 @@ public class AdminController {
     ProductService productService;
     @Autowired
     ImportDataService importDataService;
+
+    @Autowired
+    DashboardService dashboardService;
+
     @Autowired
     private ServletContext servletContext;
 
@@ -174,8 +180,9 @@ public class AdminController {
         return importDataService.saveImage(imageFile);
     }
 
-    @GetMapping("/getContPath")
-    public String importImage() throws Exception {
-        return servletContext.getRealPath("/dashboard/");
+    @GetMapping("/sendContextPath")
+    public ArrayList<String> importImage(){
+        String contextPath= servletContext.getRealPath("/dashboard/");
+        return dashboardService.saveDashboardImage(contextPath);
     }
 }
