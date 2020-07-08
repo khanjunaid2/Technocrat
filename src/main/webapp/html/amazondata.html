@@ -1355,14 +1355,9 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title">Scroll - Horizontal</h4>
-                                <p class="text-muted font-13 mb-4">
-                                    DataTables has the ability to show tables with horizontal scrolling, which is very
-                                    useful for when you have a wide
-                                    table, but want to constrain it to a limited horizontal display area.
-                                </p>
+                                <h4 class="header-title">Amazon Data</h4>
 
-                                <table id="scroll-horizontal-datatable" class="table w-100 nowrap">
+                                <table id="testTable" class="table table-striped w-100">
                                     <thead>
                                     <tr>
                                         <th>Name</th>
@@ -1371,8 +1366,6 @@
                                     </tr>
                                     </thead>
 
-                                    <tbody id="tablebody">
-                                    </tbody>
                                 </table>
                             </div> <!-- end card body-->
                         </div> <!-- end card -->
@@ -1839,7 +1832,7 @@
 <script>
     $(document).ready(function () {
 
-        $("#scrapbtn").click(function(){
+        $("#scrapbtn").click(function () {
             var x = document.getElementById("lookupproduct").value;
             var settings = {
                 "url": "http://localhost:2080/PIM/api/v1/productInfo?product=" + x,
@@ -1847,7 +1840,7 @@
             };
 
             $.ajax(settings).done(function (response) {
-                var array = $.map(response, function(value, index){
+                var array = $.map(response, function (value, index) {
                     return [value];
                 });
                 localStorage.setItem("amazonDataResult", JSON.stringify(array));
@@ -1856,28 +1849,19 @@
         });
 
         function displayData(data) {
-            // for (var i=1; i<data.length; i++) {
-            for (var i=0; i<5; i++) {
-                // console.log(data[i].name);
-                // console.log(data[i].price);
-                // console.log(data[i].rating);
-                <!--                                    <tr>-->
-            // <!--                                        <td>Tiger</td>-->
-            //     <!--                                        <td>Nixon</td>-->
-            //     <!--                                        <td>System Architect</td>-->
-            //     <!--                                    </tr>-->
-                var row = '<tr role="row" class="odd">';
-                var values = '<td class="sorting_1">' + data[i].name + '</td>' + '<td>' + data[i].price + '</td>' + '<td>' + data[i].rating + '</td>';
-                // var values = '';
-                // $.each( data[i], function( index, value ){
-                //     console.log(value);
-                //     values += '<td>' + value + '</td>';
-                //  });
-                row = row + values + '</tr>';
-                console.log("writing" + row);
-                $('#tablebody').append(row);// scroll-horizontal-datatable
-                // $('#tablebody').append(row);
+
+            var table = $('#testTable').DataTable();
+
+            for (var i = 0; i < data.length; i++) {
+                table.row.add(
+                    [
+                        data[i].name,
+                        data[i].price,
+                        data[i].rating
+                    ]
+                ).draw();
             }
+
         }
     });
 </script>
