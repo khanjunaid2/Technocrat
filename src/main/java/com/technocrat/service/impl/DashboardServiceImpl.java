@@ -10,14 +10,14 @@ import java.util.ArrayList;
 public class DashboardServiceImpl implements DashboardService {
 
     @Override
-    public ArrayList<String> saveDashboardImage(String contextPath) {
-//        String res= contextPath;
-//        String uri = "http://localhost:8088/test?path="+contextPath;
-//        RestTemplate restTemplate = new RestTemplate();
-//        ArrayList<String> result = (ArrayList<String>) restTemplate.getForObject(uri, Object.class);
+    public Object saveDashboardImage(String contextPath) {
+        String res= contextPath;
+        String uri = "http://127.0.0.1:5000/dashboardImages?path="+contextPath;
+        RestTemplate restTemplate = new RestTemplate();
+        Object retn = restTemplate.getForObject(uri, Object.class);
         ArrayList<String> result = new ArrayList<>();
         result.add("Abhijeet");
         result.add("dashboard/chelsea.jpg");
-        return result;
+        return retn;
     }
 }

@@ -181,7 +181,7 @@ public class AdminController {
     }
 
     @GetMapping("/sendContextPath")
-    public ArrayList<String> importImage(){
+    public Object importImage(){
         String contextPath= servletContext.getRealPath("/dashboard/");
         return dashboardService.saveDashboardImage(contextPath);
     }

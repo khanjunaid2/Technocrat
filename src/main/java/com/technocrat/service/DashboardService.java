@@ -4,5 +4,5 @@ import java.util.ArrayList;
 
 public interface DashboardService {
 
-    ArrayList<String> saveDashboardImage(String contextPath);
+    Object saveDashboardImage(String contextPath);
 }
