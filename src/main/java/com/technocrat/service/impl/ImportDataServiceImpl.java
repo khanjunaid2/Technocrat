@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.servlet.ServletContext;
@@ -59,7 +60,8 @@ public class ImportDataServiceImpl implements ImportDataService {
 
     @Override
     public List<Item> importProductData(String product) throws IOException {
-        String baseurl = "https://www.amazon.com/s?k=" + product + "&page=1";
+        String productUrlToAppend = getProductUrl(product);
+        String baseurl = "https://www.amazon.com/s?k=" + productUrlToAppend + "&page=1";
         Document document = Jsoup.connect(baseurl).get();
         List<Item> productDetails = new ArrayList<>();
 
@@ -80,6 +82,12 @@ public class ImportDataServiceImpl implements ImportDataService {
             }
         }
         return productDetails;
+    }
+
+    private String getProductUrl(String product) {
+        //to support multiple keywords
+        //us polo tshirt should return us+polo+tshirt
+        return product.trim().replaceAll(" ", "+");
     }
 
     @Override
