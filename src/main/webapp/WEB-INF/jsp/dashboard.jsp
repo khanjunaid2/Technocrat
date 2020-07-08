@@ -31,6 +31,7 @@
 
     <!-- icons -->
     <link href="<%=request.getContextPath()%>/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <script src="<%=request.getContextPath()%>/assets/js/jquery-3.5.0.js"></script>
 
 </head>
 
@@ -87,7 +88,8 @@
                                 <h4 class="header-title mb-0">Image 1</h4>
 
                                 <div id="cardCollpase1" class="collapse pt-3 show">
-                                    <img src="" id="image1" style="height: 433px">
+<%--                                    <img src="dashboard/ECDF.png" id="image1" style="height: 433px; width:500px">--%>
+                                    <img src="" id="image1" style="height: 433px; width:500px">
                                 </div> <!-- collapsed end -->
                             </div> <!-- end card-body -->
                         </div> <!-- end card-->
@@ -103,7 +105,8 @@
                                 </div>
                                 <h4 class="header-title mb-0">Image2</h4>
                                 <div id="cardCollpase2" class="collapse pt-3 show">
-                                    <img src="" id="image2" style="height: 433px">
+<%--                                    <img src="dashboard/histogram.png" id="image2" style="height: 433px; width:500px">--%>
+                                    <img src="" id="image2" style="height: 433px; width:500px">
                                 </div> <!-- collapsed end -->
                             </div> <!-- end card-body -->
                         </div> <!-- end card-->
@@ -119,10 +122,11 @@
                                     <a data-toggle="collapse" href="#cardCollpase4" role="button" aria-expanded="false" aria-controls="cardCollpase4"><i class="mdi mdi-minus"></i></a>
                                     <a href="javascript: void(0);" data-toggle="remove"><i class="mdi mdi-close"></i></a>
                                 </div>
-                                <h4 class="header-title mb-0">Image 1</h4>
+                                <h4 class="header-title mb-0">Image 3</h4>
 
                                 <div id="cardCollpase3" class="collapse pt-3 show">
-                                    <img src="" id="image3" style="height: 433px">
+<%--                                    <img src="dashboard/salesPerYear.png" id="image3" style="height: 433px; width:500px">--%>
+                                    <img src="" id="image3" style="height: 433px; width:500px">
                                 </div> <!-- collapsed end -->
                             </div> <!-- end card-body -->
                         </div> <!-- end card-->
@@ -136,8 +140,9 @@
                                     <a data-toggle="collapse" href="#cardCollpase5" role="button" aria-expanded="false" aria-controls="cardCollpase5"><i class="mdi mdi-minus"></i></a>
                                     <a href="javascript: void(0);" data-toggle="remove"><i class="mdi mdi-close"></i></a>
                                 </div>
-                                <h4 class="header-title mb-0">Image2</h4>
-                                <div id="cardCollpase4" class="collapse pt-3 show">
+                                <h4 class="header-title mb-0">Image4</h4>
+                                <div id="cardCollpase4" class="collapse pt-3 show" style="overflow: auto;">
+<%--                                    <img src="dashboard/storeWiseYearlySales.png" id="image4" style="height: 433px">--%>
                                     <img src="" id="image4" style="height: 433px">
                                 </div> <!-- collapsed end -->
                             </div> <!-- end card-body -->
@@ -154,9 +159,10 @@
                                     <a data-toggle="collapse" href="#cardCollpase4" role="button" aria-expanded="false" aria-controls="cardCollpase4"><i class="mdi mdi-minus"></i></a>
                                     <a href="javascript: void(0);" data-toggle="remove"><i class="mdi mdi-close"></i></a>
                                 </div>
-                                <h4 class="header-title mb-0">Image 1</h4>
+                                <h4 class="header-title mb-0">Image 5</h4>
 
-                                <div id="cardCollpase5" class="collapse pt-3 show">
+                                <div id="cardCollpase5" class="collapse pt-3 show" style="overflow: auto;">
+<%--                                    <img src="dashboard/YearWiseMonthSales.png" id="image5" style="height: 433px">--%>
                                     <img src="" id="image5" style="height: 433px">
                                 </div> <!-- collapsed end -->
                             </div> <!-- end card-body -->
@@ -171,7 +177,7 @@
                                     <a data-toggle="collapse" href="#cardCollpase5" role="button" aria-expanded="false" aria-controls="cardCollpase5"><i class="mdi mdi-minus"></i></a>
                                     <a href="javascript: void(0);" data-toggle="remove"><i class="mdi mdi-close"></i></a>
                                 </div>
-                                <h4 class="header-title mb-0">Image2</h4>
+                                <h4 class="header-title mb-0">Image6</h4>
                                 <div id="cardCollpase6" class="collapse pt-3 show">
                                     <img src="" id="image6" style="height: 433px">
                                 </div> <!-- collapsed end -->
@@ -220,8 +226,11 @@
 <!-- App js-->
 <script src="<%=request.getContextPath()%>/assets/js/app.min.js"></script>
 
-<script>
 
+<script>
+    $("div.collapse pt-3 show").scrollLeft( 300 );
+</script>
+<script>
     function sendContextPath(){
         $.ajax('http://localhost:2080/PIM/api/v1/sendContextPath', {
             type: 'GET',  // http method
@@ -239,7 +248,7 @@
             }
         });
     }
-    sendContextPath();
+    // sendContextPath();
 
 </script>
 
