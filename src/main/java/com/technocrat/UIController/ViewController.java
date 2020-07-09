@@ -36,4 +36,14 @@ public class ViewController {
     public ModelAndView dashboard() {
         return new ModelAndView("dashboard");
     }
+
+    @RequestMapping("/dashboard1")
+    public ModelAndView dashboard1() {
+        return new ModelAndView("dashboard1");
+    }
+
+    @RequestMapping("/dashboard2")
+    public ModelAndView dashboard2() {
+        return new ModelAndView("dashboard2");
+    }
 }
