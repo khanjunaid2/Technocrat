@@ -22,11 +22,6 @@ public class ViewController {
         return new ModelAndView("index");
     }
 
-    @RequestMapping("/upload")
-    public ModelAndView fileUpload() {
-        return new ModelAndView("fileUpload");
-    }
-
     @RequestMapping("/product")
     public ModelAndView product() {
         return new ModelAndView("product");
@@ -79,6 +74,16 @@ public class ViewController {
     @RequestMapping("/dashboard1")
     public ModelAndView dashboard1() {
         return new ModelAndView("dashboard1");
+    }
+
+    @RequestMapping("/amazon")
+    public ModelAndView amazon() {
+        return new ModelAndView("amazon");
+    }
+
+    @RequestMapping("/fileUpload")
+    public ModelAndView fileUpload() {
+        return new ModelAndView("fileUpload");
     }
 
     @RequestMapping("/dashboard2")
