@@ -71,7 +71,7 @@ public class ViewController {
         return model;
     }
 
-    @RequestMapping("/dashboard1")
+    @RequestMapping("/forecasting")
     public ModelAndView dashboard1() {
         return new ModelAndView("dashboard1");
     }

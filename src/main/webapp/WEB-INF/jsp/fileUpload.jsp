@@ -55,9 +55,9 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="attribute.html">PIMS</a></li>
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
-                                    <li class="breadcrumb-item active">File Uploads</li>
+                                    <li class="breadcrumb-item"><a href="attribute.html">CATAPRO</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">AI</a></li>
+                                    <li class="breadcrumb-item active">File Upload</li>
                                 </ol>
                             </div>
                             <h4 class="page-title">File Uploads</h4>
