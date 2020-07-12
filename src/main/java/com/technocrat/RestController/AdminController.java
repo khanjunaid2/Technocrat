@@ -1,5 +1,9 @@
 package com.technocrat.RestController;
 
+<<<<<<< HEAD
+import com.technocrat.model.*;
+import com.technocrat.service.*;
+=======
 import com.technocrat.model.AttributeGroup;
 import com.technocrat.model.Attributes;
 import com.technocrat.model.DataTable;
@@ -11,6 +15,7 @@ import com.technocrat.service.ProductService;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+>>>>>>> 270a1b78c225e16359907c9751577059f774ce7b
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +26,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+<<<<<<< HEAD
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+=======
+>>>>>>> 270a1b78c225e16359907c9751577059f774ce7b
 @RestController
 @Slf4j
 @RequestMapping("/PIM/api/v1")
@@ -31,13 +45,20 @@ public class AdminController {
         return "hello!";
     }
 
-
     @Autowired
     AttributeService attributeService;
+    @Autowired
+    SalesService salesService;
     @Autowired
     ProductService productService;
     @Autowired
     ImportDataService importDataService;
+
+    @Autowired
+    DashboardService dashboardService;
+
+    @Autowired
+    private ServletContext servletContext;
 
 
     @PostMapping("/addAttributeGroup")
@@ -174,6 +195,48 @@ public class AdminController {
     @PostMapping("/uploadImage")
     public String importImage(@RequestParam("imageFile") MultipartFile imageFile) throws Exception {
         return importDataService.saveImage(imageFile);
+    }
+
+    @GetMapping("/sendContextPath")
+    public Object importImage(){
+        String contextPath= servletContext.getRealPath("/html/");
+        return dashboardService.saveDashboardImage(contextPath);
+    }
+
+    @GetMapping("/generateForeCastImages")
+    public Object generateForeCastImages(){
+        String contextPath= servletContext.getRealPath("/dashboard/");
+        return dashboardService.saveForeCastImage(contextPath);
+    }
+
+    @PostMapping("/getSalesData")
+    public DataTable getSalesData(HttpServletRequest request) {
+        DataTable result = new DataTable();
+        int start = 0;
+        int end = 0;
+        int length = 0;
+        if (request.getParameter("start") != null && request.getParameter("start") != "") {
+            start = Integer.parseInt(request.getParameter("start"));
+        }
+        if (request.getParameter("length") != null && request.getParameter("length") != "") {
+            length = Integer.parseInt(request.getParameter("length"));
+            end = length;
+        }
+        List<Object> salesData = new ArrayList<>();
+        if (end < 0) {
+            salesData = salesService.getSalesData();
+        } else {
+            salesData = salesService.getSalesData(start, end);
+        }
+        result.setRecordsTotal(salesData.size());
+        result.setRecordsFiltered(salesData.size());
+        result.setData(salesData);
+        result.setStart(start);
+        result.setLength(end);
+        result.setiDisplayStart(start);
+        result.setiDisplayLength(end);
+        result.setiTotalRecords(salesData.size());
+        return result;
     }
 
     /**
