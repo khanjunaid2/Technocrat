@@ -1,18 +1,40 @@
 package com.technocrat.RestController;
 
+<<<<<<< HEAD
 import com.technocrat.model.*;
 import com.technocrat.service.*;
+=======
+import com.technocrat.model.AttributeGroup;
+import com.technocrat.model.Attributes;
+import com.technocrat.model.DataTable;
+import com.technocrat.model.Item;
+import com.technocrat.model.ProductAttrValues;
+import com.technocrat.service.AttributeService;
+import com.technocrat.service.ImportDataService;
+import com.technocrat.service.ProductService;
+import java.io.IOException;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+>>>>>>> 270a1b78c225e16359907c9751577059f774ce7b
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+<<<<<<< HEAD
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+=======
+>>>>>>> 270a1b78c225e16359907c9751577059f774ce7b
 @RestController
 @Slf4j
 @RequestMapping("/PIM/api/v1")
@@ -176,7 +198,6 @@ public class AdminController {
     }
 
     @GetMapping("/sendContextPath")
-
     public Object importImage(){
         String contextPath= servletContext.getRealPath("/html/");
         return dashboardService.saveDashboardImage(contextPath);
@@ -202,9 +223,9 @@ public class AdminController {
             end = length;
         }
         List<Object> salesData = new ArrayList<>();
-        if(end < 0 ){
+        if (end < 0) {
             salesData = salesService.getSalesData();
-        }else {
+        } else {
             salesData = salesService.getSalesData(start, end);
         }
         result.setRecordsTotal(salesData.size());
@@ -216,5 +237,16 @@ public class AdminController {
         result.setiDisplayLength(end);
         result.setiTotalRecords(salesData.size());
         return result;
+    }
+
+    /**
+     * Supports Amazon for now.. rest can be added later!
+     * @param productName
+     * @return
+     * @throws IOException
+     */
+    @GetMapping("/productInfo")
+    public List<Item> getProductInformation(@RequestParam(name = "product") String productName) throws IOException {
+        return importDataService.importProductData(productName);
     }
 }

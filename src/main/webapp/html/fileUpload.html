@@ -1335,7 +1335,7 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>
+                                    <li class="breadcrumb-item"><a href="attribute.html">PIMS</a></li>
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
                                     <li class="breadcrumb-item active">File Uploads</li>
                                 </ol>
@@ -1356,22 +1356,13 @@
                                 </p>
 
                                 <form method="post" action="" enctype="multipart/form-data" id="myform">
-                                    <div >
-                                        <input type="file" id="file" name="file" />
-                                        <input type="button" class="button" value="Upload" id="but_upload">
-                                    </div>
+
+                                    <input type="file" id="file" name="file" class="form-control-file"/>
+                                    <button type="button" id="but_upload" class="btn btn-success waves-effect waves-light">
+                                        Upload<span class="btn-label-right"><i class="mdi mdi-check-all"></i></span>
+                                    </button>
+
                                 </form>
-
-                                <div class="dz-message needsclick">
-                                    <i class="h1 text-muted dripicons-cloud-upload"></i>
-
-                                    <h3>Drop files here or click to upload......2.</h3>
-                                </div>
-
-                            </form>
-
-                                <!-- Preview -->
-                                <div class="dropzone-previews mt-3" id="file-previews"></div>
 
                             </div> <!-- end card-body-->
                         </div> <!-- end card-->
@@ -1862,7 +1853,7 @@
             fd.append('file',files);
 
             $.ajax({
-                url: 'http://localhost:9090/PIM/api/v1/importData',
+                url: 'http://localhost:2080/PIM/api/v1/importData',
                 type: 'post',
                 // data >> The data to send to the server when performing the Ajax request.
                 data: fd,

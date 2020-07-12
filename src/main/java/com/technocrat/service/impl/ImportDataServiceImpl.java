@@ -1,15 +1,9 @@
 package com.technocrat.service.impl;
 
 import com.technocrat.model.ImageDetails;
+import com.technocrat.model.Item;
 import com.technocrat.repository.ImageDetailsRepository;
 import com.technocrat.service.ImportDataService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.ServletContext;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,7 +13,17 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import javax.servlet.ServletContext;
+import lombok.extern.slf4j.Slf4j;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @Slf4j
@@ -35,7 +39,6 @@ public class ImportDataServiceImpl implements ImportDataService {
     @Override
     public List<String[]> readCSV(MultipartFile filename) throws IOException {
         log.info("Reading from CSV");
-        //String fileName = "demo.csv";
         if (!filename.getOriginalFilename().endsWith("csv")) {
             throw new IOException("Please upload CSV file");
         }
@@ -53,6 +56,38 @@ public class ImportDataServiceImpl implements ImportDataService {
             System.out.println("exception caught");
         }
         return null;
+    }
+
+    @Override
+    public List<Item> importProductData(String product) throws IOException {
+        String productUrlToAppend = getProductUrl(product);
+        String baseurl = "https://www.amazon.com/s?k=" + productUrlToAppend + "&page=1";
+        Document document = Jsoup.connect(baseurl).get();
+        List<Item> productDetails = new ArrayList<>();
+
+        List<Element> list = document.getElementsByTag("div")
+                .parallelStream()
+                .filter(element -> element.getElementsByTag("div").attr("data-asin").length() > 1)
+                .collect(Collectors.toList());
+
+
+        for (Element element : list) {
+
+            Element name = element.getElementsByAttributeValueEnding("class", "a-color-base a-text-normal").first();
+            Element price = element.getElementsByClass("a-offscreen").first();
+            Element rating = element.getElementsByClass("a-icon-alt").first();
+
+            if (name != null && price != null && rating != null) {
+                productDetails.add(new Item(name.text(), price.text(), rating.text()));
+            }
+        }
+        return productDetails;
+    }
+
+    private String getProductUrl(String product) {
+        //to support multiple keywords
+        //us polo tshirt should return us+polo+tshirt
+        return product.trim().replaceAll(" ", "+");
     }
 
     @Override
