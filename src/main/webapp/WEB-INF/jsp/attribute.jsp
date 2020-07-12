@@ -279,7 +279,6 @@
             $(document).ready(function() {
 
                 dataTable =  $('#Attribute-Data-Table').DataTable({
-
                     "serverSide": true,
                     "paging": true,
                     "searching": false,

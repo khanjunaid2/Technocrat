@@ -1,13 +1,7 @@
 package com.technocrat.RestController;
 
-import com.technocrat.model.AttributeGroup;
-import com.technocrat.model.Attributes;
-import com.technocrat.model.DataTable;
-import com.technocrat.model.ProductAttrValues;
-import com.technocrat.service.AttributeService;
-import com.technocrat.service.DashboardService;
-import com.technocrat.service.ImportDataService;
-import com.technocrat.service.ProductService;
+import com.technocrat.model.*;
+import com.technocrat.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,9 +23,10 @@ public class AdminController {
         return "hello!";
     }
 
-
     @Autowired
     AttributeService attributeService;
+    @Autowired
+    SalesService salesService;
     @Autowired
     ProductService productService;
     @Autowired
@@ -181,6 +176,7 @@ public class AdminController {
     }
 
     @GetMapping("/sendContextPath")
+
     public Object importImage(){
         String contextPath= servletContext.getRealPath("/html/");
         return dashboardService.saveDashboardImage(contextPath);
@@ -190,5 +186,35 @@ public class AdminController {
     public Object generateForeCastImages(){
         String contextPath= servletContext.getRealPath("/dashboard/");
         return dashboardService.saveForeCastImage(contextPath);
+    }
+
+    @PostMapping("/getSalesData")
+    public DataTable getSalesData(HttpServletRequest request) {
+        DataTable result = new DataTable();
+        int start = 0;
+        int end = 0;
+        int length = 0;
+        if (request.getParameter("start") != null && request.getParameter("start") != "") {
+            start = Integer.parseInt(request.getParameter("start"));
+        }
+        if (request.getParameter("length") != null && request.getParameter("length") != "") {
+            length = Integer.parseInt(request.getParameter("length"));
+            end = length;
+        }
+        List<Object> salesData = new ArrayList<>();
+        if(end < 0 ){
+            salesData = salesService.getSalesData();
+        }else {
+            salesData = salesService.getSalesData(start, end);
+        }
+        result.setRecordsTotal(salesData.size());
+        result.setRecordsFiltered(salesData.size());
+        result.setData(salesData);
+        result.setStart(start);
+        result.setLength(end);
+        result.setiDisplayStart(start);
+        result.setiDisplayLength(end);
+        result.setiTotalRecords(salesData.size());
+        return result;
     }
 }

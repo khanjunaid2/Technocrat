@@ -85,4 +85,9 @@ public class ViewController {
     public ModelAndView dashboard2() {
         return new ModelAndView("dashboard2");
     }
+
+    @RequestMapping("/sales")
+    public ModelAndView salesData() {
+        return new ModelAndView("Sales");
+    }
 }
