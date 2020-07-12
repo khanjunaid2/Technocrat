@@ -75,13 +75,13 @@
                             </div>
                             <h4 class="page-title">Dashboard</h4>
                             <br>
-                            Select The store for Analysis: <select name="storeName" id="storeName"
+                           <%-- Select The store for Analysis: <select name="storeName" id="storeName"
                                                                    onchange="onStoreChange(this.value)">
                             <option value="none">Select Store</option>
                             <option value="amazon">Amazon</option>
                             <option value="ebay">ebay</option>
                             <option value="walmart">walmart</option>
-                        </select>
+                        </select>--%>
                         </div>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                                     <h4 class="header-title mb-0">Image 1</h4>
 
                                     <div id="cardCollpase1" class="collapse pt-3 show">
-                                        <%--                                    <img src="dashboard/ECDF.png" id="image1" style="height: 433px; width:500px">--%>
+
                                         <img src="" id="image1" style="height: 433px; width:500px">
                                     </div> <!-- collapsed end -->
                                 </div> <!-- end card-body -->
@@ -126,7 +126,7 @@
                                     </div>
                                     <h4 class="header-title mb-0">Image2</h4>
                                     <div id="cardCollpase2" class="collapse pt-3 show">
-                                        <%--                                    <img src="dashboard/histogram.png" id="image2" style="height: 433px; width:500px">--%>
+
                                         <img src="" id="image2" style="height: 433px; width:500px">
                                     </div> <!-- collapsed end -->
                                 </div> <!-- end card-body -->
@@ -150,7 +150,7 @@
                                     <h4 class="header-title mb-0">Image 3</h4>
 
                                     <div id="cardCollpase3" class="collapse pt-3 show">
-                                        <%--                                    <img src="dashboard/salesPerYear.png" id="image3" style="height: 433px; width:500px">--%>
+
                                         <img src="" id="image3" style="height: 433px; width:500px">
                                     </div> <!-- collapsed end -->
                                 </div> <!-- end card-body -->
@@ -171,7 +171,7 @@
                                     </div>
                                     <h4 class="header-title mb-0">Image4</h4>
                                     <div id="cardCollpase4" class="collapse pt-3 show" style="overflow: auto;">
-                                        <%--                                    <img src="dashboard/storeWiseYearlySales.png" id="image4" style="height: 433px">--%>
+
                                         <img src="" id="image4" style="height: 433px">
                                     </div> <!-- collapsed end -->
                                 </div> <!-- end card-body -->
@@ -195,7 +195,7 @@
                                     <h4 class="header-title mb-0">Image 5</h4>
 
                                     <div id="cardCollpase5" class="collapse pt-3 show" style="overflow: auto;">
-                                        <%--                                    <img src="dashboard/YearWiseMonthSales.png" id="image5" style="height: 433px">--%>
+
                                         <img src="" id="image5" style="height: 433px">
                                     </div> <!-- collapsed end -->
                                 </div> <!-- end card-body -->
@@ -268,7 +268,7 @@
     var selectedStore = "";
     $("div.collapse pt-3 show").scrollLeft(300);
 
-    function onStoreChange(store) {
+    /*function onStoreChange(store) {
         selectedStore = store;
         if (selectedStore != "none") {
             document.getElementById("select-container").style.display = "block";
@@ -276,19 +276,17 @@
         } else {
             document.getElementById("select-container").style.display = "none";
         }
-    }
+    }*/
 
     function sendContextPath() {
-        $.ajax('http://localhost:2080/PIM/api/v1/sendContextPath', {
+        $.ajax('http://localhost:2080/PIM/api/v1/generateForeCastImages', {
             type: 'GET',  // http method
             success: function (data, status, xhr) {
                 debugger;
                 document.getElementById("image1").src = data.image1;
                 document.getElementById("image2").src = data.image2;
                 document.getElementById("image3").src = data.image3;
-                document.getElementById("image4").src = data.image4;
-                document.getElementById("image5").src = data.image5;
-                document.getElementById("image6").src = data.image6;
+
             },
             error: function (jqXhr, textStatus, errorMessage) {
                 console.log(errorMessage);
@@ -296,7 +294,7 @@
         });
     }
 
-    // sendContextPath();
+    sendContextPath();
 
 </script>
 

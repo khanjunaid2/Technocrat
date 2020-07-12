@@ -182,7 +182,13 @@ public class AdminController {
 
     @GetMapping("/sendContextPath")
     public Object importImage(){
-        String contextPath= servletContext.getRealPath("/dashboard/");
+        String contextPath= servletContext.getRealPath("/html/");
         return dashboardService.saveDashboardImage(contextPath);
+    }
+
+    @GetMapping("/generateForeCastImages")
+    public Object generateForeCastImages(){
+        String contextPath= servletContext.getRealPath("/dashboard/");
+        return dashboardService.saveForeCastImage(contextPath);
     }
 }
