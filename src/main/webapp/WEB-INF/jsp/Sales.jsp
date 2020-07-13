@@ -144,63 +144,37 @@
 <!-- App js -->
 <script src="../assets/js/app.min.js"></script>
 <script>
-
     $(document).ready(function () {
-
-        dataTable = $('#Sales-Data-Table').DataTable({
-            "serverSide": true,
-            "paging": true,
-            "searching": false,
-            "bLengthChange": true,
-            "responsive": true,
-            "iDisplayLength": 20,
-            "length": 5,
-            "aiDsiplay": 5,
-            "bDestroy": true,
-            "ordering": false,
-            "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
-            "ajax": {
-                "url": "http://localhost:2080/PIM/api/v1/getSalesData",
-                "type": "POST",
-                "data": function (d) {
-                },
-                dataFilter: function (data) {
-                    var json = jQuery.parseJSON(data);
-                    return JSON.stringify(json);
-                }
-            },
-            "columns": [
-                {
-                    "mRender": function (data, date, row) {
-                        return row[0];
-                    }
-                },
-                {
-                    "mRender": function (data, store, row) {
-                        return row[1];
-                    }
-                },
-                {
-                    "mRender": function (data, product, row) {
-                        return row[2];
-                    }
-                },
-                {
-                    "mRender": function (data, sales, row) {
-                        return row[3];
-                    }
-                }
-            ],
-            "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
-                var x = "testing";
-            }
-            ,
-            "fnDrawCallback": function (oSettings) {
-                var y = "testing";
-            }
+        var settings = {
+            "url": "http://localhost:2080/PIM/api/v1/salesInfo",
+            "method": "GET",
+        };
+        $.ajax(settings).done(function (response) {
+            debugger;
+            var array = $.map(response, function (value, index) {
+                return [value];
+            });
+            localStorage.setItem("salesDataResult", JSON.stringify(array));
+            displayData(JSON.parse(localStorage.getItem("salesDataResult")));
         });
     });
 
+    function displayData(data) {
+        debugger;
+        var table = $('#Sales-Data-Table').DataTable();
+
+        for (var i = 0; i < data.length; i++) {
+            debugger;
+            table.row.add(
+                [
+                    data[i][0],
+                    data[i][1],
+                    data[i][2],
+                    data[i][3]
+                ]
+            ).draw();
+        }
+    };
 </script>
 </body>
 </html>

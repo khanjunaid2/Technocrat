@@ -14,12 +14,6 @@ public class SalesServiceImpl implements SalesService {
     SalesRepository salesRepository;
 
     @Override
-    public List<Object> getSalesData(int start, int end) {
-        List<Object> result = salesRepository.getSalesData(end,start);
-        return result;
-    }
-
-    @Override
     public List<Object> getSalesData() {
         List<Object> result = salesRepository.getSalesData();
         return result;

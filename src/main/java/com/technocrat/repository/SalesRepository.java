@@ -11,18 +11,10 @@ import java.util.List;
 public interface SalesRepository extends CrudRepository<Sales,Integer> {
 
 
-    @Query(value = "Select t.date as date, s.store_name as store, p.product_name as product, t.total_sales as sales\n" +
-            "From sales_data as t ,  stores as s, product_details as p\n" +
-            "Where t.store_id = s.id\n" +
-            "  and p.p_id = product_id \n" +
-            "limit ?1 offset ?2" ,  nativeQuery = true)
-    List<Object> getSalesData(@Param("end") int end , @Param("start") int start);
-
-
-    @Query(value = "Select t.date as date, s.store_name as store, p.product_name as product, t.total_sales as sales\n" +
-            "            From sales_data as t ,  stores as s, product_details as p\n" +
-            "            Where t.store_id = s.id\n" +
-            "             and p.p_id = product_id \n" +
-            "            limit 1000" ,  nativeQuery = true)
+    @Query(value = "Select t.date as date, s.store_name as store, p.product_name as product, t.sales as sales\n" +
+            "From training_data as t ,  stores as s, product_details as p\n" +
+            "Where t.store = s.id\n" +
+            "  and p.p_id = item\n" +
+            "limit 100" ,  nativeQuery = true)
     List<Object> getSalesData();
 }
