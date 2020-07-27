@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+
+    <title>PIM</title>
+    <link rel="stylesheet" href="../../stylesheets/reset.css" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="../../assets/logo_pim.png" alt="logo" />
+            </div>
+            <div class="icons">
+                <img src="../../assets/icon_dashboard.png" alt="dash" />
+                <img src="../../assets/icon_data.png" alt="data" />
+                <img src="../../assets/icon_analytics.png" alt="analytics" />
+            </div>
+        </div>
+        <div class="content">
+            <div class="tabs-container">
+                <a class="tablinks" onclick="handleTabClick(event, 'performance')">Performance</a>
+                <a class="tablinks" onclick="handleTabClick(event, 'prediction')">Prediction</a>
+                <a class="tablinks active" onclick="handleTabClick(event, 'market-insight')">Market Insight</a>
+            </div>
+
+            <div id="performance" class="tabcontent">
+                <h3>Tokyo</h3>
+                <p>Paris is the capital of France.</p>
+            </div>
+
+            <div id="prediction" class="tabcontent">
+                <h3>Paris</h3>
+                <p>Paris is the capital of France.</p>
+            </div>
+
+            <div id="market-insight" class="tabcontent">
+                <div class="search-row">
+                    <div class="search-container">
+                        <div class="search-input-container">
+                            <div><img src="../../assets/search_icon.png" alt="search"></div>
+                            <input id="find-items-search" placeholder="Search keywords you'd like to analyze" />
+                        </div>
+
+                        <select name="cars" id="cars">
+                            <option value="amazon">Amazon</option>
+                            <option value="shopify">Shopify</option>
+                            <option value="walmart">Walmart</option>
+                            <option value="target">Target</option>
+                        </select>
+                        <button onclick="onSearch(event)">Search</button>
+                    </div>
+                    <div class="options">
+                        <p>Pricing</p>
+                        <p>Sentiment</p>
+                        <p style="font-weight: bold">All Results</p>
+                    </div>
+                </div>
+                <div id="items-container">
+
+                </div>
+                <div id="page-numbers-container">
+                    <div id="pages"></div>
+                    <div id="showing"></div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <script src="dashboard.js"></script>
+</body>
+
+</html>
