@@ -1,0 +1,43 @@
+.container {
+  @include container;
+
+  .content {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+
+    >div {
+      text-align: center;
+
+      h1 {
+        font-size: 36px;
+        font-weight: 500;
+        margin-bottom: 1em;
+      }
+
+      h2 {
+        font-weight: 500;
+        font-size: 24px;
+        margin-bottom: 0.5em;
+
+        span {
+          color: #3643AD;
+        }
+      }
+
+      h3 {
+        color: #979797;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          width: 28px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}

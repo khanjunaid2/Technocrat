@@ -86,10 +86,26 @@ public class ViewController {
         return new ModelAndView("fileUpload");
     }
 
+    @RequestMapping("/displayData")
+    public ModelAndView displayData() {
+        return new ModelAndView("displayData");
+    }
+
     @RequestMapping("/dashboard2")
     public ModelAndView dashboard2() {
         return new ModelAndView("dashboard2");
     }
+
+    @RequestMapping("/cropper")
+    public ModelAndView cropper() {
+        return new ModelAndView("cropper");
+    }
+
+    @RequestMapping("/crop")
+    public ModelAndView crop() {
+        return new ModelAndView("crop");
+    }
+
 
     @RequestMapping("/sales")
     public ModelAndView salesData() {

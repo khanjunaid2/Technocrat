@@ -148,7 +148,7 @@
     }
 
     function scrapData() {
-        window.location.href = 'amazondata.html';
+        window.location.href = '/amazon';
     }
 
 </script>

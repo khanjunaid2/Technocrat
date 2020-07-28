@@ -30,7 +30,8 @@ public class AttributeServiceImpl implements AttributeService {
     }
 
     public List<Attributes> getAttributes(int attrGrp) {
-        return attribute.findAttribute(attrGrp);
+        List<Attributes> reslt = attribute.findAttribute(attrGrp);
+        return reslt;
     }
 
     @Override

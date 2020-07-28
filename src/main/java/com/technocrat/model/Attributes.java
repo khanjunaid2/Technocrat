@@ -31,6 +31,10 @@ public class Attributes {
 //    @NotNull
     private int attrGrpId;
 
+    @Transient
+    private String attrGrpName;
+
+
     public void setId(int id) {
         this.id = id;
     }

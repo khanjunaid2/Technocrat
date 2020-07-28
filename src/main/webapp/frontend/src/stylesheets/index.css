@@ -1,0 +1,107 @@
+.container {
+  font-family: 'DM Sans', sans-serif;
+  height: 100vh;
+  background-color: #f2f2f2;
+}
+
+.container .sidebar {
+  position: fixed;
+  width: 55px;
+  height: 100%;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.container .sidebar .logo {
+  text-align: center;
+  position: absolute;
+  top: 20px;
+  left: 7px;
+}
+
+.container .sidebar .logo img {
+  width: 40px;
+}
+
+.container .sidebar .icons {
+  height: 25%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .sidebar .icons img {
+  width: 32px;
+}
+
+.container .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .content > div {
+  text-align: center;
+}
+
+.container .content > div h1 {
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 1em;
+}
+
+.container .content > div h2 {
+  font-weight: 500;
+  font-size: 24px;
+  margin-bottom: 0.5em;
+}
+
+.container .content > div h2 span {
+  color: #3643AD;
+}
+
+.container .content > div h3 {
+  color: #979797;
+  font-size: 18px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .content > div h3 img {
+  width: 28px;
+  margin-right: 10px;
+}
+/*# sourceMappingURL=index.css.map */

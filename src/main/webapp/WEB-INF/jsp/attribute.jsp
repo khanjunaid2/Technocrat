@@ -203,7 +203,7 @@
                                                 <tr>
                                                     <th>Name</th>
                                                     <th>Label</th>
-                                                    <th>Type</th>
+                                                    <th>Group Type</th>
                                                 </tr>
                                             </thead>
 
@@ -312,7 +312,7 @@
                             }
                         },
                         { "data": "type" , "mRender":function ( data, type, row ) {
-                                return row.type;
+                                return row.attrGrpName;
                             }
                         }
 

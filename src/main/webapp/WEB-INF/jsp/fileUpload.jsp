@@ -195,7 +195,7 @@
                     });
 
                     localStorage.setItem("test", JSON.stringify(array));
-                    window.location.href = 'displayData.html';
+                    window.location.href = '/displayData';
                 },
                 error: function (errorMessage) {
                     alert(errorMessage.responseJSON.message);

@@ -11,6 +11,5 @@ public interface AttributeService {
     public List<AttributeGroup> getAttrGrp();
     public List<Attributes> getAttributes(int attrGrp);
     public List<Attributes> getAttributes();
-
     public boolean saveAttr(Attributes model);
 }

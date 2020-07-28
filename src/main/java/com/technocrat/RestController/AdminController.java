@@ -11,7 +11,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @Slf4j
@@ -96,6 +98,8 @@ public class AdminController {
             productAttributes = productService.getProductAttributes(productId);
         }
 
+
+
         DataTable result = new DataTable();
         result.setRecordsTotal(productAttributes.size());
         result.setRecordsFiltered(productAttributes.size());
@@ -148,6 +152,19 @@ public class AdminController {
             attributes = attributeService.getAttributes();
         } else {
             attributes = attributeService.getAttributes(attrGrpId);
+        }
+
+        List<AttributeGroup> result1 = attributeService.getAttrGrp();
+
+        Map<Integer, String> map = new HashMap<>();
+
+        // put every value list to Map
+        for (AttributeGroup stu : result1) {
+            map.put(stu.getCategoryGrpId(), stu.getGroupName());
+        }
+
+        for (int i =0 ; i < attributes.size(); i ++){
+            attributes.get(i).setAttrGrpName(map.get(attributes.get(i).getAttrGrpId()));
         }
 
         DataTable result = new DataTable();

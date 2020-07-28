@@ -1,7 +1,9 @@
 package com.technocrat.service.impl;
 
+import com.technocrat.model.Attributes;
 import com.technocrat.model.ProductAttrValues;
 import com.technocrat.model.ProductDetails;
+import com.technocrat.repository.AttributeRepository;
 import com.technocrat.repository.ProductAttrValuesRepository;
 import com.technocrat.repository.ProductDetailsRepository;
 import com.technocrat.service.ProductService;
@@ -16,6 +18,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     ProductDetailsRepository productDetailsRepo;
+
+    @Autowired
+    AttributeRepository attributeRepository;
 
     @Autowired
     ProductAttrValuesRepository productAttrValuesRepository;
@@ -46,7 +51,20 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductAttrValues> getProductAttributes(String productId) {
-        return productAttrValuesRepository.findAllByProductName(productId);
+
+        int attrGrp = productDetailsRepo.findAttGrp(productId);
+        List<Attributes> list =  attributeRepository.findAttribute(attrGrp);
+        List<ProductAttrValues> returnProductAtt = new ArrayList<>();
+        list.forEach( x -> {
+                ProductAttrValues obj = new ProductAttrValues();
+                obj.setName(x.getLabel());
+                obj.setValue("");
+                obj.setId(x.getId());
+                returnProductAtt.add(obj);
+        });
+        List<ProductAttrValues> returnProductAtt1  = productAttrValuesRepository.findAllByProductName(productId);
+        returnProductAtt.addAll(returnProductAtt1);
+        return returnProductAtt;
     }
 
     @Override

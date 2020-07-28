@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+
+    <title>PIM</title>
+    <link rel="stylesheet" href="../../stylesheets/reset.css" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="image-processing.css" />
+</head>
+
+<body>
+    <div class="image-processing-container">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="../../assets/logo_pim.png" alt="logo" />
+            </div>
+            <div class="icons">
+                <img src="../../assets/icon_dashboard.png" alt="dash" />
+                <img src="../../assets/icon_data.png" alt="data" />
+                <a class="active-icon"><img src="../../assets/icon_analytics.png" alt="analytics" /></a>
+            </div>
+        </div>
+        <div class="content">
+            <div class="tabs-container">
+                <a class="tablinks active" onclick="handleTabClick(event, 'import')">Import</a>
+                <a class="tablinks" onclick="handleTabClick(event, 'audit')">Audit</a>
+                <a class="tablinks" onclick="handleTabClick(event, 'export')">Export</a>
+            </div>
+
+            <div id="import" class="tabcontent">
+                <label class="title" for="buttons-container">Upload data from computer</label>
+                <div id="buttons-container">
+                    <label>
+                        <input type="file" id="image-file">
+                        <img src="../../assets/cloud.png" alt="upload" />
+                        <span>Upload file</span>
+                    </label>
+                    <button><img src="../../assets/keyboard.png" /><span style="font-weight: bold;">Add
+                            Manually</span></button>
+                </div>
+
+
+                <div id="upload-link-container">
+                    <label for="input-url">or upload via a link</label>
+                    <input id="input-url" placeholder="https://www.site.com/shoes_in_red.xml" />
+                </div>
+
+                <div id="uploaded-file">
+
+                </div>
+
+            </div>
+
+            <!-- <div id="audit" class="tabcontent">
+                <h3>Paris</h3>
+                <p>Paris is the capital of France.</p>
+            </div>
+
+            <div id="export" class="tabcontent">
+                <h3>Tokyo</h3>
+                <p>Paris is the capital of France.</p>
+            </div> -->
+
+
+        </div>
+    </div>
+    <script src="image-processing.js"></script>
+</body>
+
+</html>
