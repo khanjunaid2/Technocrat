@@ -12,6 +12,17 @@
         flex-direction: column;
         justify-content: center;
 
+        .active-icon {
+            width: 100%;
+            text-align: center;
+            background-color: #ededed;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
         .logo {
             text-align: center;
             position: absolute;
